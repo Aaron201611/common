@@ -205,8 +205,22 @@ public class NumberUtil {
 		return d1.setScale(scale,BigDecimal.ROUND_HALF_UP);
 	}
 
+	public static double parse(String num) {
+		return new BigDecimal(num).doubleValue();
+	}
+
 	public static void main(String[] args) {
 		String ret = rounded(6.626222, 2);
 		System.out.println(ret);
+	}
+
+
+	public static Integer compairTo( Number v1 , Number v2 , int scale) {
+		if ( v1 == null || v2 == null ) {
+			return null;
+		}
+		BigDecimal d1 = new BigDecimal(v1.toString()); 
+		BigDecimal d2 = new BigDecimal(v2.toString()); 
+		return d1.setScale(scale, BigDecimal.ROUND_HALF_UP).compareTo(d2.setScale(scale, BigDecimal.ROUND_HALF_UP));
 	}
 }
